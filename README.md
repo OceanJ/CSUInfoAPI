@@ -1,9 +1,10 @@
 #CSUInfoAPI
 This is a simple API to query CSU academic infomation based on the  micro python framework [Flask](http://flask.pocoo.org/).  
-这是一个基于Flask轻量级Python网络框架的API应用，主要是为安卓端提供校内学术信息查询接口。数据都来自各大学院官网，由[CSUAcademicSpider](https://github.com/OceanJ/CSUAcademicSpider)爬虫获取和存储。    
+这是一个基于Flask轻量级网络框架的Restful-API应用，主要是为客户端提供校内学术信息查询接口。数据都来自各大学院官网，由[CSUAcademicSpider](https://github.com/OceanJ/CSUAcademicSpider)爬虫获取和存储。    
 
 
 ##已开发接口  
+
 ###获取所有地点信息  
  - URL : [/all_locations]()  
  - Method :`GET`  
@@ -43,9 +44,8 @@ Sample：
 `l.latitude`  举办地点纬度  
 `a.academy`   举办学院  
 `a.type`      学术类型（科学/技术/工程/医学）  
-`a.html_content`  具体正文HTML源码（已安全处理）  
+`a.html_content`  **具体正文**(非HTML源码)
 `a.date_sort`   序列化日期（用于排序和检索）  
-
 Sample：
 ```
 [
@@ -53,7 +53,7 @@ Sample：
 "title": " 营养与食品卫生学系研究士开题报告通知（2016.01.15）",
 "url": "http://sph.csu.edu.cn/info/1031/2301.htm",
 "academy": "公共卫生学院",
-"html_content": "&lt;div \r\n 营养与食品卫生学系研究士开题报告通知&......",
+"html_content": "\r\n 营养与食品卫生学系研究士开题报告通知&......",
 "longitude": 112.991397,
 "location": "公共卫生学院 营养与食品卫生学系PBL教室",
 "date_sort": "20160115",
@@ -82,7 +82,7 @@ Sample：
 "title": " 美国阿拉巴马大学心理学系科研副主任David C. Schwebel学术讲座",
 "url": "http://sph.csu.edu.cn/info/1031/2282.htm",
 "academy": "公共卫生学院",
-"html_content": "&lt;div style=&quot;margin-top:10px&quot;&gt;\r\n   &lt;h3 align=&quot;center&quot; style=&quot;font-size:15px&quot;&gt; 美国阿拉巴马大学心理学系科研副主任David C. Schwebel学术讲座&……",
+"html_content":  美国阿拉巴马大学心理学系科研副主任David C. Schwebel学术讲座&……",
 "longitude": 112.991397,
 "location": "公共卫生学院6楼616教室",
 "date_sort": "20160113",
@@ -97,7 +97,7 @@ Sample：
 
 
 
- ###通过类型检索学术信息
+###通过类型检索学术信息
   - URL ：[/search_type/<string:type>]()
   - Params :type
   - Method : `GET`
@@ -113,7 +113,7 @@ Sample：
 "title": "公共管理前沿与方法论坛2015第14期（总第63期）",
 "url": "http://csuspa.csu.edu.cn/html/201512/14/20151214162622.htm",
 "academy": "公管院",
-"html_content": "&lt;table width=&quot;94%&quot; height=&quot;335&quot; border=&quot;0&quot; align=&quot;center&quot; .....",
+"html_content": "....",
 "longitude": 112.935851,
 "location": "升华北10楼和谐阁",
 "date_sort": "20151216",
@@ -127,7 +127,7 @@ Sample：
 ```
 
 
-  ###通过地点ID检索学术信息
+###通过地点ID检索学术信息
    - URL ：[/search_location_id/<int:location_id>]()
    - Params :match_string
    - Method : `GET`
@@ -142,7 +142,7 @@ Sample:`curl localhost:5000/search_location_id/9 `
 "title": "III族氮化物半导体材料和深紫外半导体激光",
 "url": "http://wl.csu.edu.cn/Seconpage.aspx?strid=7b0484b2-1494-4459-b9ab-16d1b2288868&id=1e2a7463-dca8-4ade-8e19-11adb4fe1763",
 "academy": "物理院",
-"html_content": "&lt;div id=&quot;divLr&quot;&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;width: 740px;line-height:28px;&quot;&gt;&lt;tr&gt;&lt;.....",
+"html_content": "...",
 "longitude": 112.944061,
 "location": "南校区双超所211会议室  ",
 "date_sort": "20160114",
@@ -157,7 +157,7 @@ Sample:`curl localhost:5000/search_location_id/9 `
 
 
 
-   ###通过日期区间检索学术信息
+###通过日期区间检索学术信息
   - URL ：[/search_date]()
   - Params :  
     `begin` 开始日期   
@@ -174,7 +174,7 @@ Sample:`curl localhost:5000/search_location_id/9 `
 "title": " 营养与食品卫生学系研究士开题报告通知（2016.01.15）",
 "url": "http://sph.csu.edu.cn/info/1031/2301.htm",
 "academy": "公共卫生学院",
-"html_content": "&lt;div style=&quot;margin-top:10px&quot;&gt;\r\n   &lt;h3 align=&quot;center&quot; style=&quot;font-size:15px&quot;&gt; 营养与食品卫生学系研究士开题报告通知（2016.01.15...",
+"html_content": " 营养与食品卫生学系研究士开题报告通知（2016.01.15...",
 "longitude": 112.991397,
 "location": "公共卫生学院 营养与食品卫生学系PBL教室",
 "date_sort": "20160115",

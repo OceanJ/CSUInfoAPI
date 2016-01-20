@@ -1,4 +1,5 @@
 import MySQLdb
+import json
 
 def get_conn():
     host='127.0.0.1'
@@ -79,7 +80,7 @@ def search_from_string(string):
         FROM academic a
         INNER JOIN location l
         ON a.location_id=l.location_id
-        WHERE a.title REGEXP "%s" OR a.location REGEXP "%s" OR a.academy REGEXP "%s" OR a.html_content REGEXP "%s"
+        WHERE a.title REGEXP "%s" OR l.match_string REGEXP "%s" OR a.academy REGEXP "%s" OR a.html_content REGEXP "%s"
         ORDER BY date_sort DESC"""%(string,string,string,string)
     cursor.execute(sql)
     rows=cursor.fetchall()

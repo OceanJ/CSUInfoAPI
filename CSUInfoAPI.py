@@ -2,7 +2,6 @@
 from flask import Flask
 from flask_restful import Api, Resource,reqparse
 from models import *
-
 app=Flask(__name__)
 api=Api(app)
 class all_locations(Resource):

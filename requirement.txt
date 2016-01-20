@@ -5,5 +5,5 @@ lxml
 SQLAlchemy
 MySQL-python
 requests
-gunicorn
-
+uwsgi
+uwsgitop
